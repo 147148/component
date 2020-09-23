@@ -34,7 +34,7 @@ public final class GenerateSqlUtil<T> {
         this.clazz=clazz;
         this.tableName=tableName;
         this.file=file;
-        this.sb = init();
+        this.sb = init(tableName);
     }
 
 
