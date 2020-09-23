@@ -12,11 +12,4 @@ public @interface HeaderName {
      */
     String name() default "";
 
-
-    /**
-     * 索引 对应列
-     */
-    int index() default 0;
-
-
 }
