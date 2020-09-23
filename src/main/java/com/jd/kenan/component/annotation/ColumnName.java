@@ -3,7 +3,7 @@ package com.jd.kenan.component.annotation;
 /**
  * @author kenan
  */
-public @interface SqlName {
+public @interface ColumnName {
 
-    String name() default "";
+     String name() default "";
 }
