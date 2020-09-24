@@ -26,7 +26,7 @@ public final class GenerateSqlUtil<T> {
 
     private static final String NAMES = "(%s)";
 
-    private static final String VALUES = "(%s)";
+    private static final String VALUES = " VALUES(%s)";
 
     private static final String VALUE = "'%s'";
 
@@ -48,8 +48,8 @@ public final class GenerateSqlUtil<T> {
 
 
     public GenerateSqlUtil(Class<T> clazz, File file) {
-        this.names = initNames();
         this.clazz = clazz;
+        this.names = initNames();
         this.tableName = initTableName();
         this.file = file;
         this.sb = init(tableName);
@@ -139,10 +139,11 @@ public final class GenerateSqlUtil<T> {
             }
         }
 
-        sb.append(String.format(VALUES, builder.toString())).append(END);
+        StringBuilder stringBuilder = new StringBuilder(sb);
+        stringBuilder.append(String.format(VALUES, builder.substring(0, builder.length() - 1))).append(END);
 
         try (BufferedWriter bf = new BufferedWriter(new FileWriter(file, true))) {
-            bf.write(sb.toString());
+            bf.write(stringBuilder.toString());
             bf.newLine();
         } catch (Exception e) {
             LOGGER.info("追加写入文件错误", e);

@@ -13,6 +13,7 @@ import org.springframework.util.ReflectionUtils;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public final class ImportExcelUtil<T> {
 
@@ -25,7 +26,7 @@ public final class ImportExcelUtil<T> {
     private List<Header> headers;
 
 
-    public ImportExcelUtil(Class<T> clazz, File file) throws Exception {
+    public ImportExcelUtil(Class<T> clazz, File file) {
         this.clazz = clazz;
         this.file = file;
         this.headers = initHeader();
@@ -45,7 +46,7 @@ public final class ImportExcelUtil<T> {
                 throw new RuntimeException(String.format("%s.index() duplicate", HeaderName.class.getName()));
             }
             list.add(
-                    new Header(headerName.name(), fc.getName())
+                    new Header(headerName.name(), fc.getName(), headerName.index())
             );
             indexSet.add(headerName.name());
         });
@@ -54,10 +55,10 @@ public final class ImportExcelUtil<T> {
     }
 
     public List<T> convert(int start, int count) throws Exception {
-        return convert(0,start,count);
+        return convert(0, start, count);
     }
 
-    public List<T> convert(int index, int start, int count) throws Exception {
+    public List<T> convert(int index, int start, int count) {
 
 
         if (file == null) {
@@ -82,10 +83,13 @@ public final class ImportExcelUtil<T> {
             Sheet sheet = workbook.getSheetAt(0);
             if (sheet == null) return resultList;
 
-            Row row = sheet.getRow(index);
-            if (row == null) return resultList;
+            // Row row = sheet.getRow(index);
+            // if (row == null) return resultList;
 
-            List<String> sort = sort(row);
+            //  List<String> sort = sort(row);
+
+            List<String> sort = sort();
+
             if (CollectionUtils.isEmpty(sort)) {
                 return resultList;
             }
@@ -102,14 +106,19 @@ public final class ImportExcelUtil<T> {
 
                 for (int j = 0; j < sort.size(); j++) {
                     Cell cell = textRow.getCell(j);
-                    cell.setCellType(CellType.STRING);
-                    String value = cell.getStringCellValue().trim();
+                    String value = "";
+                    if (cell != null) {
+                        cell.setCellType(CellType.STRING);
+                        value = cell.getStringCellValue().trim();
+                    }
                     Field field = clazz.getDeclaredField(sort.get(j));
                     field.setAccessible(true);
                     field.set(t, value);
                 }
                 resultList.add(t);
             }
+        } catch (Exception e) {
+            LOGGER.info("文件导入异常", e);
         }
 
         return resultList;
@@ -133,6 +142,15 @@ public final class ImportExcelUtil<T> {
         return sortList;
     }
 
+    private List<String> sort() {
+
+        return headers.stream()
+                .sorted(Comparator.comparingInt(h -> h.index))
+                .map(h -> h.fieldName)
+                .collect(Collectors.toList());
+
+    }
+
 
     class Header {
 
@@ -140,10 +158,13 @@ public final class ImportExcelUtil<T> {
 
         private final String fieldName;
 
+        private final int index;
 
-        public Header(String name, String fieldName) {
+
+        public Header(String name, String fieldName, int index) {
             this.name = name;
             this.fieldName = fieldName;
+            this.index = index;
         }
 
 
