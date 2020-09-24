@@ -136,6 +136,9 @@ public final class GenerateSqlUtil<T> {
                     Method m = ClassUtils.getMethod(t.getClass(), getMethodName(column.name));
                     String result = (String) ReflectionUtils.invokeMethod(m, t);
                     if (StringUtils.hasText(result)) {
+                        if (result.contains("'")){
+                            result=result.replace("'","\\'");
+                        }
                         builder.append(String.format(VALUE, result)).append(SPLIT);
                     } else {
                         builder.append("null").append(SPLIT);
