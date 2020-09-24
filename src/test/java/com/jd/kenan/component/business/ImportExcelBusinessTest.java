@@ -4,6 +4,7 @@ import com.jd.kenan.component.ComponentApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -21,8 +22,6 @@ public class ImportExcelBusinessTest {
 
     private static final String CARRIER_FILE_TARGET_PATH = "D:\\duanhaojie\\work\\test\\carrier.sql";
 
-
-    @Autowired
     private ImportExcelBusiness importExcelBusiness;
 
     @Test
@@ -38,5 +37,11 @@ public class ImportExcelBusinessTest {
         File sourceFile = new File(CARRIER_FILE_SOURCE__PATH);
         File targetFile = new File(CARRIER_FILE_TARGET_PATH);
         importExcelBusiness.createCarrierSql(sourceFile, targetFile);
+    }
+
+    @Autowired
+    @Qualifier("importExcelBusiness")
+    public void setImportExcelBusiness(ImportExcelBusiness importExcelBusiness) {
+        this.importExcelBusiness = importExcelBusiness;
     }
 }
