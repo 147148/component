@@ -7,11 +7,11 @@ import java.util.List;
 
 public final class ExportExcelUtil<T> {
 
-    private Class<T> clazz;
+    private final Class<T> clazz;
 
-    private File sourceFile;
+    private final File sourceFile;
 
-    private File targetFile;
+    private final File targetFile;
 
     public ExportExcelUtil(Class<T> clazz, File sourceFile, File targetFile) {
         this.clazz = clazz;
