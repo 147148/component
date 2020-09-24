@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * @author kenan
  */
-@Component
+@Component("importExcelBusiness")
 public class ImportExcelBusiness extends AbstractBusiness{
 
 
