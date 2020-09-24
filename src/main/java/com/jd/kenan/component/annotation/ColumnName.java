@@ -10,5 +10,8 @@ import java.lang.annotation.*;
 @Documented
 public @interface ColumnName {
 
-     String name() default "";
+    /**
+     * 对应数据库字段名字
+     */
+    String name() default "";
 }

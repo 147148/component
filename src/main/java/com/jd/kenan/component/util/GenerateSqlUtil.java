@@ -15,6 +15,11 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 /**
+ * 此类负责导出 sql文件
+ * 主要逻辑
+ * 1、生成sql语句
+ * 2、追加写入sql文件
+ *
  * @author kenan
  */
 public final class GenerateSqlUtil<T> {
@@ -136,8 +141,8 @@ public final class GenerateSqlUtil<T> {
                     Method m = ClassUtils.getMethod(t.getClass(), getMethodName(column.name));
                     String result = (String) ReflectionUtils.invokeMethod(m, t);
                     if (StringUtils.hasText(result)) {
-                        if (result.contains("'")){
-                            result=result.replace("'","\\'");
+                        if (result.contains("'")) {
+                            result = result.replace("'", "\\'");
                         }
                         builder.append(String.format(VALUE, result)).append(SPLIT);
                     } else {

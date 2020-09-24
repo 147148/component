@@ -10,5 +10,8 @@ import java.lang.annotation.*;
 @Documented
 public @interface TableName {
 
+    /**
+     * 表的名字
+     */
     String name() default "";
 }

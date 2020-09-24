@@ -5,6 +5,11 @@ import com.jd.kenan.component.util.JackSonUtil;
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * 抽象dto
+ *
+ * @author duanhaojie
+ */
 public abstract class AbstractDto implements Serializable {
 
     private static final long serialVersionUID = -3697794894140344403L;
@@ -12,7 +17,7 @@ public abstract class AbstractDto implements Serializable {
     protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
-    public String toString(){
+    public String toString() {
         return JackSonUtil.objectToJson(this);
     }
 }

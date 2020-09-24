@@ -5,6 +5,9 @@ import org.springframework.util.CollectionUtils;
 import java.io.File;
 import java.util.List;
 
+/**
+ * 此类负责调度
+ */
 public final class ExportExcelUtil<T> {
 
     private final Class<T> clazz;

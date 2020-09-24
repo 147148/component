@@ -15,6 +15,14 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * 此类负责导入 excel文件
+ * 主要逻辑
+ * 1、解析文件
+ * 2、转换为相对应的实体类
+ *
+ * @author kenan
+ */
 public final class ImportExcelUtil<T> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ImportExcelUtil.class);
@@ -54,7 +62,7 @@ public final class ImportExcelUtil<T> {
         return Collections.unmodifiableList(list);
     }
 
-    public List<T> convert(int start, int count)   {
+    public List<T> convert(int start, int count) {
         return convert(0, start, count);
     }
 
