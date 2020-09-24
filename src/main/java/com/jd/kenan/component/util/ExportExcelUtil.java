@@ -3,12 +3,9 @@ package com.jd.kenan.component.util;
 import org.springframework.util.CollectionUtils;
 
 import java.io.File;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ExportExcelUtil<T> {
-
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private Class<T> clazz;
 

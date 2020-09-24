@@ -54,7 +54,7 @@ public final class ImportExcelUtil<T> {
         return Collections.unmodifiableList(list);
     }
 
-    public List<T> convert(int start, int count) throws Exception {
+    public List<T> convert(int start, int count)   {
         return convert(0, start, count);
     }
 
