@@ -11,7 +11,7 @@ import java.io.File;
  * @author kenan
  */
 @Component
-public class ImportExcelBusiness {
+public class ImportExcelBusiness extends AbstractBusiness{
 
 
     public void createDriverSql(File sourceFile, File targetFile) {
