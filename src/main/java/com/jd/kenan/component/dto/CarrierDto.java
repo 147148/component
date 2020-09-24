@@ -4,8 +4,6 @@ import com.jd.kenan.component.annotation.ColumnName;
 import com.jd.kenan.component.annotation.HeaderName;
 import com.jd.kenan.component.annotation.TableName;
 
-import java.time.LocalDateTime;
-
 @TableName(name = "carrier_driver_relation")
 public class CarrierDto extends AbstractDto {
     private static final long serialVersionUID = -3876238727272674360L;
