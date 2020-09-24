@@ -46,17 +46,19 @@ public class CarrierDto extends AbstractDto {
     @ColumnName(name = "create_user")
     private String create_user;
 
+    @HeaderName(name = "create_time", index = 10)
     @ColumnName(name = "create_time")
     private String create_time;
 
-    @HeaderName(name = "update_user_code", index = 10)
+    @HeaderName(name = "update_user_code", index = 11)
     @ColumnName(name = "update_user")
     private String update_user;
 
+    @HeaderName(name = "update_time", index = 12)
     @ColumnName(name = "update_time")
     private String update_time;
 
-    @HeaderName(name = "yn", index = 11)
+    @HeaderName(name = "yn", index = 13)
     @ColumnName(name = "yn")
     private String yn;
 
@@ -167,7 +169,7 @@ public class CarrierDto extends AbstractDto {
     }
 
     public String getCreate_time() {
-        return FORMATTER.format(LocalDateTime.now());
+        return create_time;
     }
 
     public CarrierDto setCreate_time(String create_time) {
@@ -185,7 +187,7 @@ public class CarrierDto extends AbstractDto {
     }
 
     public String getUpdate_time() {
-        return FORMATTER.format(LocalDateTime.now());
+        return update_time;
     }
 
     public CarrierDto setUpdate_time(String update_time) {
