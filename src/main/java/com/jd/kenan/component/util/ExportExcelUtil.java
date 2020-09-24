@@ -5,7 +5,7 @@ import org.springframework.util.CollectionUtils;
 import java.io.File;
 import java.util.List;
 
-public class ExportExcelUtil<T> {
+public final class ExportExcelUtil<T> {
 
     private Class<T> clazz;
 
