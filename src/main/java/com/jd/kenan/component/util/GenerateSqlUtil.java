@@ -8,6 +8,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.lang.reflect.Method;
@@ -133,8 +134,12 @@ public final class GenerateSqlUtil<T> {
             for (Column column : list) {
                 if (name.equals(column.name)) {
                     Method m = ClassUtils.getMethod(t.getClass(), getMethodName(column.name));
-                    Object result = ReflectionUtils.invokeMethod(m, t);
-                    builder.append(String.format(VALUE, result)).append(SPLIT);
+                    String result = (String) ReflectionUtils.invokeMethod(m, t);
+                    if (StringUtils.hasText(result)) {
+                        builder.append(String.format(VALUE, result)).append(SPLIT);
+                    } else {
+                        builder.append("null").append(SPLIT);
+                    }
                 }
             }
         }
