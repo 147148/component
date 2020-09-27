@@ -14,13 +14,13 @@ import java.io.File;
 @RunWith(SpringRunner.class)
 public class ImportExcelBusinessTest {
 
-    private static final String DRIVER_FILE_SOURCE_PATH = "D:\\duanhaojie\\work\\test\\driver.xls";
+    private static final String DRIVER_FILE_SOURCE_PATH = "D:\\duanhaojie\\work\\test\\77195096_3.xls";
 
-    private static final String DRIVER_FILE_TARGET_PATH = "D:\\duanhaojie\\work\\test\\driver.sql";
+    private static final String DRIVER_FILE_TARGET_PATH = "D:\\duanhaojie\\work\\test\\driver3.sql";
 
-    private static final String CARRIER_FILE_SOURCE__PATH = "D:\\duanhaojie\\work\\test\\carrier.xls";
+    private static final String CARRIER_FILE_SOURCE__PATH = "D:\\duanhaojie\\work\\test\\77195098_3.xls";
 
-    private static final String CARRIER_FILE_TARGET_PATH = "D:\\duanhaojie\\work\\test\\carrier.sql";
+    private static final String CARRIER_FILE_TARGET_PATH = "D:\\duanhaojie\\work\\test\\carrier_driver_relation3.sql";
 
     private ImportExcelBusiness importExcelBusiness;
 

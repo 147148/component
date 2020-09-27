@@ -29,6 +29,16 @@
             <scope>test</scope>
         </dependency>
 
+
+        <!--
+        给带有@component注解的bean在编译期间建立索引，后面启动时直接扫描索引文件spring.components
+        具体解析类 参考 org.springframework.context.index.CandidateComponentsIndexLoader
+        -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-indexer</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

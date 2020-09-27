@@ -1,0 +1,10 @@
+@startuml
+
+object object01
+
+object object02
+
+object object03
+
+@enduml
+
